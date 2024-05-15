@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { verify } from 'hono/jwt';
+// @ts-ignore
 import { createBlog, updateBlog } from "@jaskirat01/medium-project"
 
 interface Blog {

@@ -1,4 +1,4 @@
-## Introduction
+# Introduction
 
 This module contains code for zod validation of user inputs and data types.
 module also exports data types for use in frontend
@@ -38,7 +38,7 @@ module also exports data types for use in frontend
     const inputBody: UserSignUp = await c.req.json();
 ```
 
-## publish to npm
+## Publish to npm
 ```bash
     npm adduser
     npm publish --access public

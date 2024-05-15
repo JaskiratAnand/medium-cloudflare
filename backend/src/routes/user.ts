@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import bcrypt from 'bcryptjs'
 import { sign } from 'hono/jwt'
+// @ts-ignore
 import { signupInput, signinInput } from "@jaskirat01/medium-project"
 
 interface User {
