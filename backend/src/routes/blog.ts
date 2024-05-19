@@ -13,9 +13,20 @@ interface Blog {
     readonly authorId: string,
     readonly createdAt: Date,
     readonly updatedAt: Date
-}
-type createBlogType = Pick<Blog, 'title' | 'content'>
-type updateBlogType = Partial<Pick<Blog, 'id' | 'title' | 'content'>>
+};
+interface getBlog {
+    id: string
+    title: string,
+    content: string,
+    createdAt: Date,
+    authorId: string,
+    author: {
+        name: string
+    }
+};
+type getBlogs = getBlog[];
+type createBlogType = Pick<Blog, 'title' | 'content'>;
+type updateBlogType = Partial<Pick<Blog, 'id' | 'title' | 'content'>>;
 
 const app = new Hono<{
     Bindings: {
@@ -125,8 +136,20 @@ app.get('/:id', async (c) => {
     }).$extends(withAccelerate());
 
     try {
-        const post: Blog | null = await prisma.post.findUnique({
-            where: { id }
+        const post: getBlog | null = await prisma.post.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                createdAt: true,
+                authorId: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
         });
         if(!post){
             c.status(404);
@@ -146,10 +169,22 @@ app.get('/bulk/', async (c) => {
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
-    console.log("bulkkkkk");
 
     try {
-        const posts: Blog[] = await prisma.post.findMany();
+        const posts: getBlogs = await prisma.post.findMany({
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                createdAt: true,
+                authorId: true,
+                author: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
         c.status(200);
         if(!posts) return c.json("no posts/blogs found")
         return c.json(posts);
