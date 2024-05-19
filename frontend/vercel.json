@@ -2,8 +2,7 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/signup",
-            "permanent": true
+            "destination": "/signup"
         }
     ]
 }
