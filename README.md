@@ -1,3 +1,6 @@
 ## Medium Blog App
 
-Host: https://medium-cloudflare-lyzvz6fzc-jaskirat-anands-projects.vercel.app/
+Website: https://medium-cloudflare-two.vercel.app/
+
+### Youtube Link
+  https://youtu.be/qHoHzPzR8j8?si=7o7mDRExX6flDSOy 
